@@ -21,4 +21,8 @@ class LoginViewModel extends ChangeNotifier {
     setState(ViewState.idle);
     return response;
   }
+
+  void pushNextRoute(BuildContext context) {
+    Navigator.pushNamed(context, '/post');
+  }
 }

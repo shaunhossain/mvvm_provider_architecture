@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mvvm_provider_architecture/locator.dart';
-import 'package:mvvm_provider_architecture/ui/views/login_view.dart';
+import 'package:mvvm_provider_architecture/ui/router.dart';
 
 
 void main() {
@@ -17,7 +17,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(),
-      home: const LoginView(),
+      initialRoute: '/login',
+      onGenerateRoute: PageRouter.generateRoute,
     );
   }
 }

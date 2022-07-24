@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:mvvm_provider_architecture/core/models/comment.dart';
 import 'package:mvvm_provider_architecture/core/models/post.dart';
@@ -9,15 +10,19 @@ import 'package:mvvm_provider_architecture/ui/shared/endpoints.dart';
 class Api {
   var client = http.Client();
 
-  Future<User> getUserProfile(int userId) async {
+  Future<User> getUserProfile({required int userId}) async {
     // Get user profile for id
     final response = await client.get(Uri.parse('$baseUrl/users/$userId'));
-
-    // Convert and return
-    return userFromJson(response);
+    if (response.statusCode == 200) {
+      log(response.body.toString());
+      return userFromJson(response.body);
+    } else {
+      log(response.body.toString());
+      return userFromJson(response.body);
+    }
   }
 
-  Future<List<Post>> getPostsForUser(int userId) async {
+  Future<List<Post>> getPostsForUser({required int userId}) async {
     var posts = <Post>[];
     // Get user posts for id
 

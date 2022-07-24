@@ -53,7 +53,8 @@ class _LoginViewState extends State<LoginView> {
                           var loginSuccess =
                               await model.login(userIdText: _controller.text);
                           if (loginSuccess) {
-                            log(loginSuccess.toString());
+                            if (!mounted) return;
+                            model.pushNextRoute(context);
                           }
                         },
                       )

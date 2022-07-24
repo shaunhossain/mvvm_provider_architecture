@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mvvm_provider_architecture/core/models/post.dart';
 
 class PostView extends StatelessWidget {
-  const PostView({Key? key, required this.post}) : super(key: key);
-  final Post post;
-
+  const PostView({Key? key}) : super(key: key);
 
 
   @override
