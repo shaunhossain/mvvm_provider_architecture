@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mvvm_provider_architecture/core/models/user.dart';
+import 'package:mvvm_provider_architecture/core/services/authentication_service.dart';
 import 'package:mvvm_provider_architecture/locator.dart';
 import 'package:mvvm_provider_architecture/ui/router.dart';
+import 'package:provider/provider.dart';
 
 
 void main() {
@@ -13,12 +16,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(),
-      initialRoute: '/login',
-      onGenerateRoute: PageRouter.generateRoute,
+    return  StreamProvider<User>(
+      initialData: User.initial(),
+      create: (context) => locator<AuthenticationService>().userController.stream,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(),
+        initialRoute: '/login',
+        onGenerateRoute: PageRouter.generateRoute,
+      ),
     );
   }
 }
