@@ -7,23 +7,21 @@ import 'package:mvvm_provider_architecture/ui/shared/endpoints.dart';
 
 /// The service responsible for networking requests
 class Api {
-  static const endpoint = 'https://jsonplaceholder.typicode.com';
-
   var client = http.Client();
 
   Future<User> getUserProfile(int userId) async {
     // Get user profile for id
-    var response = await client.get(Uri.parse('$baseUrl/users/$userId'));
+    final response = await client.get(Uri.parse('$baseUrl/users/$userId'));
 
     // Convert and return
-    return User.fromJson(json.decode(response.body));
+    return userFromJson(response);
   }
 
   Future<List<Post>> getPostsForUser(int userId) async {
     var posts = <Post>[];
     // Get user posts for id
 
-    var response = await client.get(Uri.parse('$endpoint/posts?userId=$userId'));
+    var response = await client.get(Uri.parse('$baseUrl/posts?userId=$userId'));
 
     // parse into List
     var parsed = json.decode(response.body) as List<dynamic>;
@@ -40,7 +38,7 @@ class Api {
     var comments = <Comment>[];
 
     // Get comments for post
-    var response = await client.get(Uri.parse('$endpoint/comments?postId=$postId'));
+    var response = await client.get(Uri.parse('$baseUrl/comments?postId=$postId'));
 
     // Parse into List
     var parsed = json.decode(response.body) as List<dynamic>;
