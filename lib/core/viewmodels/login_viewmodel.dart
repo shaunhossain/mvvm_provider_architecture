@@ -24,6 +24,6 @@ class LoginViewModel extends BaseViewModel {
   }
 
   void pushNextRoute(BuildContext context) {
-    Navigator.pushNamed(context, '/post');
+    Navigator.pushNamed(context, '/');
   }
 }
