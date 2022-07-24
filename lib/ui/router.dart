@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:mvvm_provider_architecture/core/models/post.dart';
 import 'package:mvvm_provider_architecture/ui/shared/text_styles.dart';
 import 'package:mvvm_provider_architecture/ui/views/home_view.dart';
 import 'package:mvvm_provider_architecture/ui/views/login_view.dart';
 import 'package:mvvm_provider_architecture/ui/views/post_view.dart';
 
-class PageRouter{
+class PageRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/':
@@ -14,7 +15,8 @@ class PageRouter{
         return MaterialPageRoute(builder: (_) => const LoginView());
 
       case '/post':
-        return MaterialPageRoute(builder: (_) => const PostView());
+        final post = settings.arguments as Post;
+        return MaterialPageRoute(builder: (_) => PostView(post: post));
 
       default:
         return MaterialPageRoute(
